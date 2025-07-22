@@ -4,7 +4,7 @@ ruby "3.2.0"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.0"
-
+gem "pg"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
@@ -69,4 +69,4 @@ group :test do
   gem "selenium-webdriver"
 end
 
-  gem 'pg'
+
