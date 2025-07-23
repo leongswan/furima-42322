@@ -35,3 +35,6 @@
 /config/master.key
 .Ds_Store
 .Zone.Identifier
+/config/master.key
+
+/config/credentials/production.key
