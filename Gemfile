@@ -6,6 +6,7 @@ gem "importmap-rails"
 gem "turbo-rails"
 gem "stimulus-rails"
 gem "jbuilder"
+gem "pg"
 gem "tzinfo-data", platforms: %i[windows jruby]
 gem "bootsnap", require: false
 
@@ -22,8 +23,4 @@ end
 group :test do
   gem "capybara"
   gem "selenium-webdriver"
-end
-
-group :production do
-  gem "pg"
 end
