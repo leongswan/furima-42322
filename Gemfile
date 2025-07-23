@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 ruby "3.2.0"
-gem "pg", group: :production
+gem "pg"
 gem "rails", "~> 7.1.0"
 gem "sprockets-rails"
 gem "mysql2", "~> 0.5", group: [:development, :test]
