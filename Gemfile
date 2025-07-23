@@ -9,9 +9,8 @@ gem "jbuilder"
 gem "tzinfo-data", platforms: %i[windows jruby]
 gem "bootsnap", require: false
 
-group :production do
-  gem "pg", "~> 1.4"
-end
+gem 'pg'
+
 
 group :development, :test do
   gem "mysql2", "~> 0.5"
