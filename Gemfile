@@ -1,6 +1,5 @@
 ruby "3.2.0"
 gem "rails", "~> 7.1.0"
-gem 'pg', '~> 1.4'
 gem "sprockets-rails"
 gem "puma", ">= 5.0"
 gem "importmap-rails"
@@ -9,6 +8,10 @@ gem "stimulus-rails"
 gem "jbuilder"
 gem "tzinfo-data", platforms: %i[windows jruby]
 gem "bootsnap", require: false
+
+group :production do
+  gem "pg", "~> 1.4"
+end
 
 group :development, :test do
   gem "mysql2", "~> 0.5"
