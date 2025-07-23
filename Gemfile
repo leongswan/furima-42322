@@ -1,12 +1,6 @@
-source "https://rubygems.org"
-
 ruby "3.2.0"
-gem "pg"
 gem "rails", "~> 7.1.0"
 gem "sprockets-rails"
-group :development, :test do
-  gem "mysql2", "~> 0.5"
-end  
 gem "puma", ">= 5.0"
 gem "importmap-rails"
 gem "turbo-rails"
@@ -16,6 +10,7 @@ gem "tzinfo-data", platforms: %i[windows jruby]
 gem "bootsnap", require: false
 
 group :development, :test do
+  gem "mysql2", "~> 0.5"
   gem "debug", platforms: %i[mri windows]
 end
 
@@ -29,3 +24,6 @@ group :test do
   gem "selenium-webdriver"
 end
 
+group :production do
+  gem "pg"
+end
