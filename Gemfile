@@ -4,7 +4,9 @@ ruby "3.2.0"
 gem "pg"
 gem "rails", "~> 7.1.0"
 gem "sprockets-rails"
-gem "mysql2", "~> 0.5", group: [:development, :test]
+group :development, :test do
+  gem "mysql2", "~> 0.5"
+end  
 gem "puma", ">= 5.0"
 gem "importmap-rails"
 gem "turbo-rails"
