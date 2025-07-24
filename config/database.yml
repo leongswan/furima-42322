@@ -1,10 +1,12 @@
+
 default: &default
   adapter: postgresql
-  encoding: unicode
+  encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: <%= ENV["DB_USERNAME"] || "your_local_username" %>
   password: <%= ENV["DB_PASSWORD"] || "" %>
   host: <%= ENV["DB_HOST"] || "localhost" %>
+  socket: /tmp/mysql.sock
 
 development:
   <<: *default
@@ -20,3 +22,4 @@ production:
   password: <%= Rails.application.credentials.dig(:db, :password) %>
   host: localhost
   database: furima-42322_production
+
