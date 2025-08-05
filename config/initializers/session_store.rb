@@ -1,0 +1,1 @@
+Rails.application.config.session_store :cookie_store, key: '_furima_42322_session', secure: Rails.env.production?
