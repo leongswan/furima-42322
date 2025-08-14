@@ -17,6 +17,8 @@ gem 'pg'
 group :development, :test do
   # gem "mysql2", "~> 0.5"
   gem "debug", platforms: %i[mri windows]
+  gem "rspec-rails", "~> 6.1"
+  gem "factory_bot_rails"
 end
 
 group :development do
@@ -27,4 +29,10 @@ end
 group :test do
   gem "capybara"
   gem "selenium-webdriver"
+  gem "faker"
 end
+
+gem 'devise'
+gem 'dotenv-rails'
+
+

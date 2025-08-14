@@ -27,7 +27,7 @@ Rails.application.configure do
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = false
+  # config.assets.compile = false
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.asset_host = "http://assets.example.com"
@@ -49,7 +49,7 @@ Rails.application.configure do
   # config.assume_ssl = true
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = true
+  config.force_ssl = ENV['RAILS_FORCE_SSL'] == 'true'
 
   # Log to STDOUT by default
   config.logger = ActiveSupport::Logger.new(STDOUT)
@@ -73,6 +73,8 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  config.action_mailer.default_url_options = { host: 'furima-42322.onrender.com' }
+
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
@@ -94,4 +96,9 @@ Rails.application.configure do
   # ]
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+  config.assets.js_compressor = nil
+  config.assets.css_compressor = nil
+
+  config.hosts << "localhost"
+  config.hosts << "127.0.0.1"
 end
