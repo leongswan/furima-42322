@@ -7,3 +7,32 @@ db/schema.rb linguist-generated
 vendor/* linguist-vendored
 config/credentials/*.yml.enc diff=rails_credentials
 config/credentials.yml.enc diff=rails_credentials
+
+# ここから追記 ----------
+# 文字ファイルは基本LF（Gitがテキストを認識できるように）
+* text=auto
+
+# Railsで使う主要テキストはLF固定
+*.rb   eol=lf
+*.rake eol=lf
+*.ru   eol=lf
+*.yml  eol=lf
+*.yaml eol=lf
+*.erb  eol=lf
+*.haml eol=lf
+*.js   eol=lf
+*.ts   eol=lf
+*.css  eol=lf
+*.scss eol=lf
+*.md   eol=lf
+*.html eol=lf
+Gemfile  eol=lf
+Rakefile eol=lf
+Procfile eol=lf
+
+# バイナリ（改行正規化しない）
+*.png  -text
+*.jpg  -text
+*.jpeg -text
+*.gif  -text
+*.webp -text

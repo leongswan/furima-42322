@@ -19,6 +19,7 @@ group :development, :test do
   gem "debug", platforms: %i[mri windows]
   gem "rspec-rails", "~> 6.1"
   gem "factory_bot_rails"
+  gem 'dotenv-rails'
 end
 
 group :development do
@@ -33,6 +34,5 @@ group :test do
 end
 
 gem 'devise'
-gem 'dotenv-rails'
-
+gem 'active_hash'
 
