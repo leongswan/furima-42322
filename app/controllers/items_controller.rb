@@ -9,8 +9,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(item_params)
-    @item.user = current_user
+    @item = current_user.items.build(item_params)
     if @item.save
       redirect_to root_path, notice: '出品が完了しました。'
     else
