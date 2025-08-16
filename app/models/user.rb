@@ -1,9 +1,9 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  
+
   has_many :items, dependent: :destroy
- 
+
   VALID_ZENKAKU_NAME = /\A[ぁ-んァ-ヶ一-龥々ー]+\z/
   VALID_ZENKAKU_KANA = /\A[ァ-ヶー]+\z/
 
@@ -16,16 +16,13 @@ class User < ApplicationRecord
     validates :birth_date
   end
 
-  
   validate :password_complexity, if: -> { password.present? }
 
   private
 
   def password_complexity
-    
     return if password.match?(/\A(?=.*[A-Za-z])(?=.*\d)[!-~]{6,}\z/)
 
     errors.add(:password, 'は半角英数字混合で6文字以上にしてください')
   end
-  
 end
