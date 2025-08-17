@@ -1,19 +1,31 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="price"
+
 export default class extends Controller {
   static targets = ["fee", "profit"]
+  static values = { rate: { type: Number, default: 0.1 } }
 
   connect() {
-    const input = document.getElementById("item-price")
-    if (input) this.recalc({ target: input }) // 初期表示時に反映
+    this.recalc()
+    this._onTurboRender = () => this.recalc()
+    document.addEventListener("turbo:render", this._onTurboRender)
   }
 
-  recalc(e) {
-    const v = parseInt(e.target.value, 10)
-    if (Number.isNaN(v) || v < 300 || v > 9999999) { this.feeTarget.textContent="-"; this.profitTarget.textContent="-"; return }
-    const fee = Math.floor(v * 0.1)
-    this.feeTarget.textContent = fee; this.profitTarget.textContent = v - fee
-  
+  disconnect() {
+    document.removeEventListener("turbo:render", this._onTurboRender)
+  }
+
+  recalc() {
+    const input = document.getElementById("item-price")
+    if (!input) return
+    const v = parseInt(input.value, 10)
+    if (Number.isFinite(v)) {
+      const fee = Math.floor(v * this.rateValue)
+      this.feeTarget.textContent = fee
+      this.profitTarget.textContent = v - fee
+    } else {
+      this.feeTarget.textContent = ""
+      this.profitTarget.textContent = ""
+    }
   }
 }

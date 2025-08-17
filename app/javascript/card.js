@@ -1,3 +1,4 @@
+/* 購入機能（Payjp）のブランチで有効化予定
 const pay = () => {
   const form = document.getElementById('charge-form')
   form.addEventListener("submit", (e) => {
@@ -7,3 +8,4 @@ const pay = () => {
 };
 
 window.addEventListener("turbo:load", pay);
+*/
