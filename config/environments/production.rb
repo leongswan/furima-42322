@@ -101,4 +101,7 @@ Rails.application.configure do
 
   config.hosts << "localhost"
   config.hosts << "127.0.0.1"
+
+  config.hosts << ENV["RENDER_EXTERNAL_HOSTNAME"] if ENV["RENDER_EXTERNAL_HOSTNAME"].present?
+  config.hosts << "furima-42322.onrender.com"
 end
