@@ -127,20 +127,46 @@
       新規投稿商品
     </div>
     <ul class='item-lists'>
-
-      
+     <% if @items.any? %>
+      <% @items.each do |item| %>
       <li class='list'>
         <%= link_to "#" do %>
         <div class='item-img-content'>
-          <%= image_tag "item-sample.png", class: "item-img" %>
-
+          <% if item.image.attached? %>
+            <%= image_tag item.image, class: "item-img" %>
+          <% else %>
+            <%= image_tag "item-sample.png", class: "item-img" %>
+          <% end %>
           
-          <div class='sold-out'>
-            <span>Sold Out!!</span>
+
+          <%# ★「sold out」は購入機能実装後にここで条件表示します %>
+          <%# <div class='sold-out'>
+            <span>Sold Out!!</span></div> %>
+      </div>
+
+      <div class='item-info'>
+          <h3 class='item-name'><%= item.name %></h3>
+          <div class='item-price'>
+            <span>
+              <%= number_to_currency(item.price, unit: "¥", precision: 0, format: "%u%n") %><br>
+              <%= item.delivery_fee.name %>
+            </span>
+            <div class='star-btn'>
+              <%= image_tag "star.png", class:"star-icon" %>
+              <span class='star-count'>0</span>
+            </div>
           </div>
-          
-
         </div>
+      <% end %>
+      </li>
+    <% end %>
+  <% else %>
+    <li class='list'>
+      <%= link_to "#" do %>
+        <div class='item-img-content'>
+          <%= image_tag "item-sample.png", class: "item-img" %>
+        </div>
+          
         <div class='item-info'>
           <h3 class='item-name'>
             <%= "商品名" %>
@@ -150,11 +176,11 @@
             <div class='star-btn'>
               <%= image_tag "star.png", class:"star-icon" %>
               <span class='star-count'>0</span>
-            </div>
-          </div>
-        </div>
-        <% end %>
-      </li>
+             </div>
+           </div>
+         </div>
+      <% end %>
+    </li>
       
 
       <li class='list'>
@@ -172,12 +198,11 @@
             </div>
           </div>
         </div>
-        <% end %>
-      </li>
-      
-    </ul>
-  </div>
-  
+      <% end %>
+    </li>
+  <% end %>
+ </ul> 
+
 </div>
 <%= link_to(new_item_path, class: 'purchase-btn') do %>
   <span class='purchase-btn-text'>出品する</span>
