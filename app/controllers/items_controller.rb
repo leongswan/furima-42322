@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
-  before_action :set_item, only: [:show, :edit, :update]
-  before_action :authorize_user!, only: [:edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_user!, only: [:edit, :update, :destroy]
 
   def index
     @items = Item.with_attached_image.order(created_at: :desc)
@@ -31,6 +31,14 @@ class ItemsController < ApplicationController
       redirect_to @item, notice: '商品情報を更新しました。'
     else
       render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    if @item.destroy
+      redirect_to root_path, notice: '商品を削除しました。'
+    else
+      redirect_to item_path(@item), alert: '削除に失敗しました。'
     end
   end
 
