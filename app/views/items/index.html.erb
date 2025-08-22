@@ -130,14 +130,14 @@
      <% if @items.any? %>
       <% @items.each do |item| %>
       <li class='list'>
-        <%= link_to "#" do %>
+        <%= link_to item_path(item) do %>
         <div class='item-img-content'>
           <% if item.image.attached? %>
             <%= image_tag item.image, class: "item-img" %>
           <% else %>
             <%= image_tag "item-sample.png", class: "item-img" %>
           <% end %>
-          
+        
 
           <%# ★「sold out」は購入機能実装後にここで条件表示します %>
           <%# <div class='sold-out'>
