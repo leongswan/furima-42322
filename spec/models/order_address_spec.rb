@@ -62,17 +62,17 @@ RSpec.describe OrderAddress, type: :model do
     it 'phone_numberはハイフン不可' do
       order_address.phone_number = '090-1234-5678'
       order_address.valid?
-      expect(order_address.errors.full_messages).to include('Phone number is invalid')
+      expect(order_address.errors.full_messages).to include('Phone number is invalid. 10〜11桁の半角数字のみ')
     end
 
     it 'phone_numberは10〜11桁でなければ無効（短い/長い）' do
       order_address.phone_number = '090123456'
       order_address.valid?
-      expect(order_address.errors.full_messages).to include('Phone number is invalid')
+      expect(order_address.errors.full_messages).to include('Phone number is invalid. 10〜11桁の半角数字のみ')
 
       order_address.phone_number = '090123456789'
       order_address.valid?
-      expect(order_address.errors.full_messages).to include('Phone number is invalid')
+      expect(order_address.errors.full_messages).to include('Phone number is invalid. 10〜11桁の半角数字のみ')
     end
 
     it 'tokenが必須' do
