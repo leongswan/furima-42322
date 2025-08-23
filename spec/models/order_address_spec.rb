@@ -26,7 +26,7 @@ RSpec.describe OrderAddress, type: :model do
     it 'cityが必須' do
       order_address.city = ''
       order_address.valid?
-      expect(order_address.errors.full_messages).to include("City can't be blank")
+      expect(order_address.errors.added?(:city, :blank)).to be true
     end
 
     it 'postal_codeが必須' do
@@ -38,7 +38,7 @@ RSpec.describe OrderAddress, type: :model do
     it 'postal_codeは「3桁-4桁」の半角でなければ無効' do
       order_address.postal_code = '1234567'
       order_address.valid?
-      expect(order_address.errors.full_messages).to include('Postal code is invalid. Include hyphen (-)')
+      expect(order_address.errors.added?(:postal_code, :invalid)).to be true
     end
 
     it 'area_idは1以外でなければ無効' do
