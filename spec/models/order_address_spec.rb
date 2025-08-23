@@ -71,7 +71,6 @@ RSpec.describe OrderAddress, type: :model do
       order_address.valid?
       expect(order_address.errors.full_messages).to include('Phone number is invalid. 10〜11桁の半角数字のみ')
     end
-    
 
     it 'tokenが必須' do
       order_address.token = ''
