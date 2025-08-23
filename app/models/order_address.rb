@@ -5,7 +5,8 @@ class OrderAddress
                 :postal_code, :area_id, :city, :address, :building_name, :phone_number
 
   with_options presence: true do
-    validates :user_id, :item_id, :token, :city, :address
+    validates :user_id, :item_id, :token, :city, :address, :postal_code, :phone_number
+  end
 
   validates :postal_code,
            format:  { with: /\A\d{3}-\d{4}\z/, message: 'is invalid. Include hyphen(例: 123-4567)' },
@@ -14,7 +15,7 @@ class OrderAddress
   validates :phone_number,
            format:  { with: /\A\d{10,11}\z/, message: 'is invalid. 10〜11桁の半角数字のみ' },
            allow_blank: true
-  end
+  
   validates :area_id, numericality: { other_than: 1, message: "can't be blank" }
 
   def save
