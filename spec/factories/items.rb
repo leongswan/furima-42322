@@ -13,13 +13,11 @@ FactoryBot.define do
     after(:build) do |item|
       next if item.image.attached?
       path = Rails.root.join('spec/fixtures/files/leonbigcat_small.png')
-      File.open(path, 'rb') do |f|
-        item.image.attach(
-          io: StringIO.new(File.binread(path)),
-          filename: 'leonbigcat_small.png',
-          content_type: 'image/png'
-        )
-      end
+      item.image.attach(
+        io: StringIO.new(File.binread(path)),
+        filename: 'leonbigcat_small.png',
+        content_type: 'image/png'
+      )
     end
   end
 end
