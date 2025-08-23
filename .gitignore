@@ -42,3 +42,6 @@
 /config/master.key
 /config/credentials.yml.enc
 .env
+# Ignore dev credentials
+/config/credentials/development.key
+/config/credentials/development.yml.enc
