@@ -9,26 +9,26 @@ class OrderAddress
   end
 
   validates :postal_code,
-           format:  { with: /\A\d{3}-\d{4}\z/, message: 'is invalid. Include hyphen(例: 123-4567)' },
-           allow_blank: true
+            format: { with: /\A\d{3}-\d{4}\z/, message: 'is invalid. Include hyphen(例: 123-4567)' },
+            allow_blank: true
 
   validates :phone_number,
-           format:  { with: /\A\d{10,11}\z/, message: 'is invalid. 10〜11桁の半角数字のみ' },
-           allow_blank: true
-  
+            format: { with: /\A\d{10,11}\z/, message: 'is invalid. 10〜11桁の半角数字のみ' },
+            allow_blank: true
+
   validates :area_id, numericality: { other_than: 1, message: "can't be blank" }
 
   def save
     ActiveRecord::Base.transaction do
       order = Order.create!(user_id: user_id, item_id: item_id)
       ShippingAddress.create!(
-        order_id:      order.id,
-        postal_code:   postal_code,
-        area_id:       area_id,
-        city:          city,
-        address:       address,
+        order_id: order.id,
+        postal_code: postal_code,
+        area_id: area_id,
+        city: city,
+        address: address,
         building_name: building_name,
-        phone_number:  phone_number
+        phone_number: phone_number
       )
     end
     true
