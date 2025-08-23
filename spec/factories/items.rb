@@ -15,7 +15,7 @@ FactoryBot.define do
       path = Rails.root.join('spec/fixtures/files/leonbigcat_small.png')
       File.open(path, 'rb') do |f|
         item.image.attach(
-          io: f,
+          io: StringIO.new(File.binread(path)),
           filename: 'leonbigcat_small.png',
           content_type: 'image/png'
         )
