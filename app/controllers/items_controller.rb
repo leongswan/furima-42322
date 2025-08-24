@@ -8,10 +8,6 @@ class ItemsController < ApplicationController
     redirect_to root_path, alert: '売却済みのため編集できません' if @item.sold?
   end
 
-  def ensure_owner!
-    redirect_to root_path unless current_user == @item.user
-  end
-
   def index
     @items = Item.with_attached_image.includes(:order).order(created_at: :desc)
   end

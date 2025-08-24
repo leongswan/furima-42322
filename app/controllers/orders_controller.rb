@@ -25,8 +25,9 @@ class OrdersController < ApplicationController
   end
 
   def redirect_if_seller_or_sold
-    redirect_to root_path, alert: '購入できません' and return if current_user == @item.user
-    redirect_to root_path, alert: '購入できません' and return if @item.order.present?
+    return unless current_user == @item.user || @item.order.present?
+
+    redirect_to root_path, alert: '購入できません'
   end
 
   def order_params
