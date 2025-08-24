@@ -2,9 +2,14 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :authorize_user!, only: [:edit, :update, :destroy]
+  before_action :redirect_if_sold!, only: %i[edit update]
+
+  def redirect_if_sold!
+    redirect_to root_path, alert: '売却済みのため編集できません' if @item.sold?
+  end
 
   def index
-    @items = Item.with_attached_image.order(created_at: :desc)
+    @items = Item.with_attached_image.includes(:order).order(created_at: :desc)
   end
 
   def show
